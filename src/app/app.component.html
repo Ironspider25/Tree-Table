@@ -1,0 +1,34 @@
+<div class="card">
+  @if (treeData() && treeData().length) {
+  <p-treeTable [value]="treeData()" [scrollable]="true" [tableStyle]="{'min-width':'50rem', 'font-size':'14px'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Sub Branch</th>
+        <th>Fees</th>
+        <th>Availale Seats</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+      <tr [ttRow]="rowNode">
+        <td>
+          <p-treeTableToggler [rowNode]="rowNode" class="expand-collapse-icon"></p-treeTableToggler>
+        </td>
+        <td>
+          {{ rowData?.name }}
+        </td>
+        <td>
+          {{ rowData?.subBranchOf ==='none'?' - ': rowData?.subBranchOf}}
+        </td>
+        <td>
+          {{ rowData?.fees ? rowData?.fees:rowData?.avgFees }}
+        </td>
+        <td>
+          {{ rowData?.seatsAvailable }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-treeTable>
+  }
+</div>
